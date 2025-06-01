@@ -18,8 +18,27 @@ export class TodoItemComponent {
    * we emit the ID via this `@Output`. 
    */
   @Output() delete = new EventEmitter<number>();
+  @Output() edit = new EventEmitter<{ id: number, title: string }>();
 
   onDelete() {
     this.delete.emit(this.todo.id);
+  }
+  editing = false;
+  editTitle = '';
+
+  onEdit() {
+    this.editing = true;
+    this.editTitle = this.todo.title;
+  }
+
+  saveEdit() {
+    if (this.editTitle.trim() && this.editTitle !== this.todo.title) {
+      this.edit.emit({ id: this.todo.id, title: this.editTitle });
+    }
+    this.editing = false;
+  }
+
+  cancelEdit() {
+    this.editing = false;
   }
 }

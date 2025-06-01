@@ -1,6 +1,13 @@
 <div class="todo-item">
-     <!-- Display the title from the @Input() --> 
-    <span>{{ todo.title }}</span>
-    <!-- When clicked, emit the `delete` event with this.to-do’s ID --> 
-     <button (click)="onDelete()">Delete</button>
+
+    <div *ngIf="!editing">
+      <span>{{ todo.title }}</span>
+      <button (click)="onEdit()">Edit</button>
+      <button (click)="delete.emit(todo.id)">Delete</button>
+    </div>
+    <div *ngIf="editing">
+      <input [(ngModel)]="editTitle" (keyup.enter)="saveEdit()" (blur)="saveEdit()" />
+      <button (click)="saveEdit()">Save</button>
+      <button (click)="cancelEdit()">Cancel</button>
+    </div>
 </div>ˀ

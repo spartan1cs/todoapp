@@ -25,11 +25,11 @@
       <app-todo-item
         [todo]="todo"            
         (delete)="onDelete($event)"  
-      ></app-todo-item>
+        (edit)="onEdit($event)">
+      </app-todo-item>
     </li>
   </ul>
 
   <app-add-todo (newTodo)="onAddTodo($event)"></app-add-todo>
 </ng-template>
 
- 

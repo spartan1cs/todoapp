@@ -150,4 +150,38 @@ export class TodoService {
       })
     ).subscribe();
   }
+
+  /**
+   * Edit a to-do's title.
+   */
+  editTodo(id: number, newTitle: string): void {
+    const trimmed = newTitle.trim();
+    if (!trimmed) return;
+
+    // Optimistically update UI
+    const currentTodos = this._todosSubject$.getValue();
+    const updatedTodos = currentTodos.map(todo =>
+      todo.id === id ? { ...todo, title: trimmed } : todo
+    );
+    this._todosSubject$.next(updatedTodos);
+
+    this._loading$.next(true);
+
+    this.http.put<Todo>(`${this.API_URL}/${id}`, { title: trimmed }).pipe(
+      tap((updatedTodo: Todo) => {
+        // Replace with server response (if needed)
+        const refreshedTodos = this._todosSubject$.getValue().map(todo =>
+          todo.id === id ? updatedTodo : todo
+        );
+        this._todosSubject$.next(refreshedTodos);
+      }),
+      catchError(err => {
+        console.error('Error editing todo:', err);
+        // Rollback: revert to previous state
+        this._todosSubject$.next(currentTodos);
+        return of(null);
+      }),
+      finalize(() => this._loading$.next(false))
+    ).subscribe();
+  }
 }

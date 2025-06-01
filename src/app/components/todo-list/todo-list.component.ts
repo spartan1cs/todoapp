@@ -39,4 +39,11 @@ export class TodoListComponent implements OnInit {
   onDelete(id: number): void {
     this.todoService.deleteTodo(id);
   }
+
+  /**
+   * Called when user edits a to-do item
+   */
+  onEdit(event: { id: number, title: string }) {
+    this.todoService.editTodo(event.id, event.title);
+  }
 }
