@@ -1,0 +1,91 @@
+openapi: "3.0.1"
+info:
+  title: "API Documentation"
+  version: "1.0"
+paths:
+  /api/todos:
+    post:
+      summary: "POST /api/todos"
+      description: "POST /api/todos"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                id:
+                  type: "integer"
+                  description: ""
+                  format: "int64"
+                title:
+                  type: "string"
+                  description: ""
+                completed:
+                  type: "boolean"
+                  description: ""
+              description: ""
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  id:
+                    type: "integer"
+                    description: ""
+                    format: "int64"
+                  title:
+                    type: "string"
+                    description: ""
+                  completed:
+                    type: "boolean"
+                    description: ""
+  /api/todos/{id}:
+    put:
+      summary: "PUT /api/todos/{id}"
+      description: "PUT /api/todos/{id}"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: ""
+        required: true
+        schema:
+          type: "integer"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                id:
+                  type: "integer"
+                  description: ""
+                  format: "int64"
+                title:
+                  type: "string"
+                  description: ""
+                completed:
+                  type: "boolean"
+                  description: ""
+              description: ""
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  id:
+                    type: "integer"
+                    description: ""
+                    format: "int64"
+                  title:
+                    type: "string"
+                    description: ""
+                  completed:
+                    type: "boolean"
+                    description: ""
+components: {}
