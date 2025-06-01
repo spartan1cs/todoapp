@@ -1,0 +1,19 @@
+/* src/app/components/add-todo/add-todo.component.css */
+
+.add-todo-container {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.add-todo-container input {
+  flex: 1;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+.add-todo-container button {
+  padding: 8px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}

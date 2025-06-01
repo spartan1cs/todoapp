@@ -1,0 +1,11 @@
+<!-- src/app/components/add-todo/add-todo.component.html -->
+
+<div class="add-todo-container">
+  <input
+    type="text"
+    [(ngModel)]="title"
+    placeholder="Enter new to-do"
+    (keyup.enter)="submitTodo()"
+  />
+  <button (click)="submitTodo()">Add</button>
+</div>
